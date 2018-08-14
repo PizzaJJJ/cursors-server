@@ -1,0 +1,35 @@
+{
+    "packets": {
+        "valid": {
+            "1": "C00",
+            "2": "C01",
+            "3": "C02"
+        },
+        "throttled": {
+            "2": "C01",
+            "3": "C02"
+        },
+        "maxLength": 9
+    },
+    "server": {
+        "host": "127.0.0.1",
+        "port": 9004,
+        "maxPlayers": 900,
+        "maxClientsPerIp": 900,
+        "disconnectionTimeout": 900000,
+        "clientVerificationInterval": 30000,
+        "packetThrottler": {
+            "enabled": true,
+            "packetRate": 40,
+            "packetRatePer": 10
+        }
+    },
+    "inputController": {
+        "enabled": true,
+        "tickInterval": 20
+    },
+    "logging": {
+        "level": 2,
+        "timezone": 3
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "tickInterval": 50,
+    "resetTimeout": 600000,
+    "wallHackProtection": 2,
+    "maxDraw": 30,
+    "maxShow": 100,
+    "levelWidth": 400,
+    "levelHeight": 300,
+    "dataSendLimit": 50,
+    "pathsToLevels": [
+        "res/levels/A1.json",
+        "res/levels/B1.json",
+        "res/levels/C1.json",
+        "res/levels/Group01",
+        "res/levels/Group02",
+        "res/levels/B7.json",
+        "res/levels/C7.json"
+    ]
+}

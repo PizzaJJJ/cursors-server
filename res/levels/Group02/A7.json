@@ -1,0 +1,28 @@
+{
+	"spawn":{"x":200,"y":290},
+	"objects":[
+		{"id":0,"type":1,"x":50,"y":50,"width":300,"height":40,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":1,"type":1,"x":180,"y":90,"width":40,"height":170,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":2,"type":1,"x":50,"y":140,"width":130,"height":30,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":3,"type":1,"x":220,"y":140,"width":130,"height":30,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":4,"type":1,"x":50,"y":220,"width":130,"height":40,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":5,"type":1,"x":220,"y":220,"width":130,"height":40,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":6,"type":1,"x":160,"y":280,"width":20,"height":20,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":7,"type":1,"x":220,"y":280,"width":20,"height":20,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":8,"type":2,"x":200,"y":0,"width":50,"height":50,"isBad":false},
+		{"id":9,"type":2,"x":150,"y":0,"width":50,"height":50,"isBad":false},
+		{"id":10,"type":3,"x":304,"y":260,"width":40,"height":40,"lastCount":1,"count":1,"doors":[18],"color":{"r":255,"g":153,"b":255,"a":0}},
+		{"id":11,"type":3,"x":56,"y":260,"width":40,"height":40,"lastCount":1,"count":1,"doors":[19],"color":{"r":255,"g":153,"b":255,"a":0}},
+		{"id":12,"type":4,"x":225,"y":175,"width":40,"height":40,"timeStamp":0,"lastCount":10,"count":10,"doors":[21],"color":{"r":255,"g":153,"b":153,"a":0}},
+		{"id":13,"type":4,"x":135,"y":175,"width":40,"height":40,"timeStamp":0,"lastCount":10,"count":10,"doors":[17],"color":{"r":153,"g":153,"b":255,"a":0}},
+		{"id":14,"type":4,"x":135,"y":95,"width":40,"height":40,"timeStamp":0,"lastCount":10,"count":10,"doors":[20],"color":{"r":153,"g":255,"b":255,"a":0}},
+		{"id":15,"type":4,"x":225,"y":95,"width":40,"height":40,"timeStamp":0,"lastCount":10,"count":10,"doors":[16],"color":{"r":255,"g":255,"b":153,"a":0}},
+		{"id":16,"type":1,"x":0,"y":50,"width":50,"height":20,"color":{"r":255,"g":255,"b":153,"a":0}},
+		{"id":17,"type":1,"x":350,"y":140,"width":50,"height":20,"color":{"r":153,"g":153,"b":255,"a":0}},
+		{"id":18,"type":1,"x":330,"y":260,"width":20,"height":40,"color":{"r":255,"g":153,"b":255,"a":0}},
+		{"id":19,"type":1,"x":50,"y":260,"width":20,"height":40,"color":{"r":255,"g":153,"b":255,"a":0}},
+		{"id":20,"type":1,"x":350,"y":50,"width":50,"height":20,"color":{"r":153,"g":255,"b":255,"a":0}},
+		{"id":21,"type":1,"x":0,"y":140,"width":50,"height":20,"color":{"r":255,"g":153,"b":153,"a":0}}
+	],
+	"lvlname":"A7"
+}

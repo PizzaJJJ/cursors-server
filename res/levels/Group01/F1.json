@@ -1,0 +1,11 @@
+{
+	"spawn":{"x":25,"y":275},
+	"objects":[
+		{"id":0,"type":1,"x":190,"y":0,"width":20,"height":100,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":1,"type":1,"x":190,"y":200,"width":20,"height":100,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":2,"type":4,"x":25,"y":125,"width":50,"height":50,"timeStamp":0,"lastCount":50,"count":50,"doors":[4],"color":{"r":255,"g":153,"b":153,"a":0}},
+		{"id":3,"type":2,"x":325,"y":125,"width":50,"height":50,"isBad":false},
+		{"id":4,"type":1,"isOpened":false,"x":190,"y":100,"width":20,"height":100,"color":{"r":255,"g":153,"b":153,"a":0}}
+	],
+	"lvlname":"F1"
+}

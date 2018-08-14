@@ -1,0 +1,13 @@
+{
+	"spawn":{"x":275,"y":150},
+	"objects":[
+		{"id":0,"type":0,"x":300,"y":75,"textHeight":20,"isCentered":true,"text":"Sometimes you might need to"},
+		{"id":1,"type":0,"x":300,"y":85,"textHeight":20,"isCentered":true,"text":"think about the needs of others"},
+		{"id":2,"type":1,"x":190,"y":0,"width":20,"height":100,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":3,"type":1,"x":190,"y":200,"width":20,"height":100,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":4,"type":3,"x":325,"y":125,"width":50,"height":50,"lastCount":2,"count":2,"doors":[6],"color":{"r":255,"g":0,"b":0,"a":0}},
+		{"id":5,"type":2,"x":25,"y":125,"width":50,"height":50,"isBad":false},
+		{"id":6,"type":1,"isOpened":false,"x":190,"y":100,"width":20,"height":100,"color":{"r":255,"g":153,"b":153,"a":0}}
+	],
+	"lvlname":"G1"
+}

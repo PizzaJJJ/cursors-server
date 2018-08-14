@@ -1,0 +1,20 @@
+{
+	"spawn":{"x":200,"y":275},
+	"objects":[
+		{"id":0,"type":1,"x":150,"y":0,"width":25,"height":250,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":1,"type":1,"x":225,"y":0,"width":25,"height":250,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":2,"type":1,"x":100,"y":50,"width":25,"height":250,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":3,"type":1,"x":275,"y":50,"width":25,"height":250,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":4,"type":1,"x":325,"y":0,"width":25,"height":250,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":5,"type":1,"x":50,"y":0,"width":25,"height":250,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":6,"type":4,"x":5,"y":5,"width":40,"height":40,"timeStamp":0,"lastCount":50,"count":50,"doors":[10],"color":{"r":255,"g":153,"b":153,"a":0}},
+		{"id":7,"type":4,"x":355,"y":5,"width":40,"height":40,"timeStamp":0,"lastCount":50,"count":50,"doors":[11],"color":{"r":153,"g":153,"b":255,"a":0}},
+		{"id":8,"type":4,"x":180,"y":255,"width":40,"height":40,"timeStamp":0,"lastCount":50,"count":50,"doors":[12,13],"color":{"r":255,"g":255,"b":153,"a":0}},
+		{"id":9,"type":2,"x":175,"y":0,"width":50,"height":50,"isBad":false},
+		{"id":10,"type":1,"x":175,"y":225,"width":50,"height":25,"color":{"r":255,"g":153,"b":153,"a":0}},
+		{"id":11,"type":1,"x":175,"y":200,"width":50,"height":25,"color":{"r":153,"g":153,"b":255,"a":0}},
+		{"id":12,"type":1,"x":50,"y":250,"width":25,"height":50,"color":{"r":255,"g":255,"b":153,"a":0}},
+		{"id":13,"type":1,"x":325,"y":250,"width":25,"height":50,"color":{"r":255,"g":255,"b":153,"a":0}}
+	],
+	"lvlname":"D2"
+}

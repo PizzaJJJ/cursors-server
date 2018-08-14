@@ -1,0 +1,19 @@
+{
+	"spawn":{"x":45,"y":150},
+	"objects":[
+		{"id":0,"type":1,"x":225,"y":0,"width":175,"height":125,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":1,"type":1,"x":225,"y":175,"width":175,"height":125,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":2,"type":1,"x":0,"y":0,"width":175,"height":125,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":3,"type":1,"x":0,"y":175,"width":175,"height":125,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":4,"type":1,"x":0,"y":125,"width":25,"height":50,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":5,"type":1,"x":375,"y":125,"width":25,"height":50,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":6,"type":1,"x":175,"y":0,"width":50,"height":25,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":7,"type":1,"x":175,"y":275,"width":50,"height":25,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":8,"type":4,"x":180,"y":30,"width":40,"height":40,"timeStamp":0,"lastCount":50,"count":50,"doors":[11],"color":{"r":255,"g":153,"b":153,"a":0}},
+		{"id":9,"type":4,"x":180,"y":230,"width":40,"height":40,"timeStamp":0,"lastCount":50,"count":50,"doors":[12],"color":{"r":153,"g":153,"b":255,"a":0}},
+		{"id":10,"type":2,"x":325,"y":125,"width":50,"height":50,"isBad":false},
+		{"id":11,"type":1,"x":250,"y":125,"width":25,"height":50,"color":{"r":255,"g":153,"b":153,"a":0}},
+		{"id":12,"type":1,"x":275,"y":125,"width":25,"height":50,"color":{"r":153,"g":153,"b":255,"a":0}}
+	],
+	"lvlname":"C3"
+}

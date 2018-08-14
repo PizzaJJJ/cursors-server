@@ -1,0 +1,14 @@
+{
+	"spawn":{"x":200,"y":150},
+	"objects":[
+		{"id":0,"type":0,"x":200,"y":140,"textHeight":68,"isCentered":true,"text":"The End"},
+		{"id":1,"type":0,"x":200,"y":165,"textHeight":20,"isCentered":true,"text":"That's it. We don't plan to add more levels :/"},
+		{"id":2,"type":0,"x":200,"y":178,"textHeight":15,"isCentered":true,"text":"You can stay here and enjoy the company of other winners..."},
+		{"id":3,"type":0,"x":200,"y":191,"textHeight":15,"isCentered":true,"text":"Or repeat the same levels once again."},
+		{"id":4,"type":1,"x":360,"y":270,"width":40,"height":10,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":5,"type":1,"x":360,"y":280,"width":10,"height":10,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":6,"type":1,"x":380,"y":290,"width":10,"height":10,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":7,"type":2,"x":390,"y":290,"width":10,"height":10,"isBad":false}
+	],
+	"lvlname":"C7"
+}

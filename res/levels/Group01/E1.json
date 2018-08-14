@@ -1,0 +1,17 @@
+{
+	"spawn":{"x":25,"y":275},
+	"objects":[
+		{"id":0,"type":1,"x":25,"y":225,"width":50,"height":25,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":1,"type":1,"x":50,"y":250,"width":25,"height":50,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":2,"type":2,"x":25,"y":25,"width":50,"height":200,"isBad":true,"dst":"E1"},
+		{"id":3,"type":2,"x":95,"y":0,"width":63,"height":275,"isBad":true,"dst":"E1"},
+		{"id":4,"type":2,"x":75,"y":25,"width":5,"height":275,"isBad":true,"dst":"E1"},
+		{"id":5,"type":2,"x":167,"y":25,"width":68,"height":275,"isBad":true,"dst":"E1"},
+		{"id":6,"type":2,"x":240,"y":0,"width":60,"height":275,"isBad":true,"dst":"E1"},
+		{"id":7,"type":1,"x":300,"y":0,"width":25,"height":275,"color":{"r":0,"g":0,"b":0,"a":0}},
+		{"id":8,"type":2,"x":325,"y":0,"width":75,"height":75,"isBad":false},
+		{"id":9,"type":2,"x":325,"y":75,"width":25,"height":200,"isBad":true,"dst":"E1"},
+		{"id":10,"type":2,"x":375,"y":75,"width":25,"height":200,"isBad":true,"dst":"E1"}
+	],
+	"lvlname":"E1"
+}

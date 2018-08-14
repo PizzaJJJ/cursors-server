@@ -1,0 +1,18 @@
+{
+  "name": "cursors",
+  "version": "2.0.0",
+  "description": "Simple io game. Move your cursor further through obstacles",
+  "main": "./GameLogic/startup.js",
+  "dependencies": {
+    "ws": "^5.2.1"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "test": "mocha Tests/*.js ",
+    "start": "node ./GameLogic/startup.js"
+  },
+  "author": "JJJ",
+  "license": "ISC"
+}

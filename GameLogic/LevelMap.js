@@ -1,9 +1,8 @@
-const LinkedList    = require('../Engine/Utilities/LinkedList.js');
 const objDispatcher = require('./Level objects/LevelObjectDispatcher.js');
 const NULL          = require('../Engine/Engine.js').getConstants().NULL; 
 
 function GridItem() {
-    this.players = new LinkedList();
+    this.players = new Set();
     this.objects = [];
 }
 
@@ -28,6 +27,17 @@ class LevelMap {
     _isInside(shrinkedX, shrinkedY) {
         return shrinkedX >= 0 && shrinkedX < this._maxWidth &&
                shrinkedY >= 0 && shrinkedY < this._maxHeight;
+    }
+
+    _getPlayersAt(x, y) {
+        x = this.shrinkCoord(x);
+        y = this.shrinkCoord(y);
+
+        if (!this._isInside(x, y)) {
+            return NULL;
+        }
+
+        return this._grid[x + this._maxWidth * y].players;
     }
 
     shrinkCoord(x) {
@@ -213,17 +223,6 @@ class LevelMap {
         return arr;
     }
 
-    getPlayersAt(x, y) {
-        x = this.shrinkCoord(x);
-        y = this.shrinkCoord(y);
-
-        if (!this._isInside(x, y)) {
-            return NULL;
-        }
-
-        return this._grid[x + this._maxWidth * y].players;
-    }
-
     getPlayersInArea(x, y, w, h) {
         const shX = this.shrinkCoord(x),
               shY = this.shrinkCoord(y),
@@ -238,10 +237,10 @@ class LevelMap {
                     continue;
                 }
 
-                let players = this._grid[i + this._maxWidth * j].players.dataArray;
+                let players = this._grid[i + this._maxWidth * j].players;
 
-                if (players.length != 0) {
-                    Array.prototype.push.apply(arr, players);
+                if (players.size != 0) {
+                    Array.prototype.push.apply(arr, Array.from(players));
                 }
             }
         }  
@@ -263,7 +262,7 @@ class LevelMap {
                     continue;
                 }
 
-                res += this._grid[i + this._maxWidth * j].players.length;
+                res += this._grid[i + this._maxWidth * j].players.size;
             }
         }  
         
@@ -271,7 +270,7 @@ class LevelMap {
     }
 
     addPlayer(player) {
-        const gridPlayers = this.getPlayersAt(player.x, player.y);
+        const gridPlayers = this._getPlayersAt(player.x, player.y);
 
         if (gridPlayers) {
             gridPlayers.add(player.id);
@@ -279,10 +278,10 @@ class LevelMap {
     }
 
     removePlayer(player) {
-        const gridPlayers = this.getPlayersAt(player.x, player.y);
+        const gridPlayers = this._getPlayersAt(player.x, player.y);
 
         if (gridPlayers) {
-            gridPlayers.removeData(player.id);
+            gridPlayers.delete(player.id);
         }
     }
 

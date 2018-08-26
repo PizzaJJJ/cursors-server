@@ -137,12 +137,7 @@ class Level {
         const player = this.players[id];
 
         if (player.x != x || player.y != y) {
-            const playerX   = this.map.shrinkCoord(player.x),
-                  playerY   = this.map.shrinkCoord(player.y),
-                  shX       = this.map.shrinkCoord(x),
-                  shY       = this.map.shrinkCoord(y);
-
-            if (playerX != shX || playerY != shY) {
+            if (this.map.isDifferentCells(player.x, player.y, x, y)) {
                 this.map.removePlayer(this.players[id]);
 
                 player.x = x;

@@ -12,15 +12,16 @@ class LevelMap {
         this._realHeight = h;
 
         this._step = gridStep;
-        this._maxWidth = this.shrinkCoord(w);
-        this._maxHeight = this.shrinkCoord(h);
+        this._maxWidth = this._shrinkCoord(w);
+        this._maxHeight = this._shrinkCoord(h);
 
         this._grid = [];
 
-        var i, l = this._maxWidth * this._maxHeight;
+        var i, l = this._maxWidth * this._maxHeight,
+            item = new GridItem();
 
         for (i = 0; i < l; i++) {
-            this._grid[i] = new GridItem();
+            this._grid[i] = item;
         }
     }
 
@@ -30,8 +31,8 @@ class LevelMap {
     }
 
     _getPlayersAt(x, y) {
-        x = this.shrinkCoord(x);
-        y = this.shrinkCoord(y);
+        x = this._shrinkCoord(x);
+        y = this._shrinkCoord(y);
 
         if (!this._isInside(x, y)) {
             return NULL;
@@ -40,36 +41,59 @@ class LevelMap {
         return this._grid[x + this._maxWidth * y].players;
     }
 
-    shrinkCoord(x) {
+    _shrinkCoord(x) {
         return Math.floor(x/this._step);
     }
 
     isInside(x, y) {
-        x = this.shrinkCoord(x);
-        y = this.shrinkCoord(y);
+        x = this._shrinkCoord(x);
+        y = this._shrinkCoord(y);
 
         return this._isInside(x, y);
     }
 
     writeObject(obj) {
-        const objX = this.shrinkCoord(obj.x),
-              objY = this.shrinkCoord(obj.y),
-              objW = this.shrinkCoord(obj.x + obj.width),
-              objH = this.shrinkCoord(obj.y + obj.height);
+        const objX = this._shrinkCoord(obj.x),
+              objY = this._shrinkCoord(obj.y),
+              objW = this._shrinkCoord(obj.x + obj.width),
+              objH = this._shrinkCoord(obj.y + obj.height);
+
+        const item = new GridItem();
+        item.objects.push(obj);
+
+        const objectsAddingMap = new Map();
 
         var i, j;
         for (j = objY; j < objH; j++) {
             for (i = objX; i < objW; i++) {
                 if (this._isInside(i, j)) {
-                    this._grid[i + this._maxWidth * j].objects.push(obj);
+                    let cell = this._grid[i + this._maxWidth * j];
+
+                    if (cell.objects.length > 0) {
+
+                        if (objectsAddingMap.has(cell.objects)) {
+                            this._grid[i + this._maxWidth * j] = objectsAddingMap.get(cell.objects);
+                        } else {
+                            let newItem = new GridItem();
+                    
+                            Array.prototype.push.apply(newItem.objects, cell.objects);
+                            newItem.objects.push(obj);
+                            objectsAddingMap.set(cell.objects, newItem);
+
+                            this._grid[i + this._maxWidth * j] = newItem;
+                        }
+
+                    } else {
+                        this._grid[i + this._maxWidth * j] = item;
+                    }
                 }
             }
         }
     }
 
     isWalkableAt(x, y) {
-        x = this.shrinkCoord(x);
-        y = this.shrinkCoord(y);
+        x = this._shrinkCoord(x);
+        y = this._shrinkCoord(y);
 
         if (!this._isInside(x, y)) {
             return false;
@@ -196,8 +220,8 @@ class LevelMap {
     }
 
     getObjectsAt(x, y) {
-        x = this.shrinkCoord(x);
-        y = this.shrinkCoord(y);
+        x = this._shrinkCoord(x);
+        y = this._shrinkCoord(y);
 
         if (!this._isInside(x, y)) {
             return NULL;
@@ -223,25 +247,44 @@ class LevelMap {
         return arr;
     }
 
+    isDifferentCells(x0, y0, x1, y1) {
+        x0 = this._shrinkCoord(x0);
+        y0 = this._shrinkCoord(y0);
+        x1 = this._shrinkCoord(x1);
+        y1 = this._shrinkCoord(y1);
+
+        if (!this._isInside(x0, y0) || !this._isInside(x1, y1)) {
+            return false;
+        }
+
+        return this._grid[x0 + this._maxWidth * y0] != this._grid[x1 + this._maxWidth * y1];
+    }
+
     getPlayersInArea(x, y, w, h) {
-        const shX = this.shrinkCoord(x),
-              shY = this.shrinkCoord(y),
-              shW = this.shrinkCoord(x + w),
-              shH = this.shrinkCoord(y + h);
+        const shX = this._shrinkCoord(x),
+              shY = this._shrinkCoord(y),
+              shW = this._shrinkCoord(x + w),
+              shH = this._shrinkCoord(y + h);
 
         var i, j, arr = [];
 
+        const visitedSet = new WeakSet();
+
         for (j = shY; j < shH; j++) {
             for (i = shX; i < shW; i++) {
-                if (!this._isInside(i, j)) {
+                let coord = i + this._maxWidth * j;
+                
+                if (!this._isInside(i, j) || visitedSet.has(this._grid[coord])) {
                     continue;
                 }
 
-                let players = this._grid[i + this._maxWidth * j].players;
+                let players = this._grid[coord].players;
 
                 if (players.size != 0) {
                     Array.prototype.push.apply(arr, Array.from(players));
                 }
+
+                visitedSet.add(this._grid[coord]);
             }
         }  
         
@@ -249,20 +292,26 @@ class LevelMap {
     }
 
     getPlayerAmountInArea(x, y, w, h) {
-        const shX = this.shrinkCoord(x),
-              shY = this.shrinkCoord(y),
-              shW = this.shrinkCoord(x + w),
-              shH = this.shrinkCoord(y + h);
+        const shX = this._shrinkCoord(x),
+              shY = this._shrinkCoord(y),
+              shW = this._shrinkCoord(x + w),
+              shH = this._shrinkCoord(y + h);
 
         var i, j, res = 0;
 
+        const visitedSet = new WeakSet();
+
         for (j = shY; j < shH; j++) {
             for (i = shX; i < shW; i++) {
-                if (!this._isInside(i, j)) {
+                let coord = i + this._maxWidth * j;
+
+                if (!this._isInside(i, j) || visitedSet.has(this._grid[coord])) {
                     continue;
                 }
 
-                res += this._grid[i + this._maxWidth * j].players.size;
+                res += this._grid[coord].players.size;
+
+                visitedSet.add(this._grid[coord]);
             }
         }  
         
@@ -286,8 +335,8 @@ class LevelMap {
     }
 
     walkStraight(x0, y0, x1, y1) {
-        if (this.shrinkCoord(x0) == this.shrinkCoord(x1) && 
-            this.shrinkCoord(y0) == this.shrinkCoord(y1)) {
+        if (this._shrinkCoord(x0) == this._shrinkCoord(x1) && 
+            this._shrinkCoord(y0) == this._shrinkCoord(y1)) {
             return {
                 x: x1,
                 y: y1

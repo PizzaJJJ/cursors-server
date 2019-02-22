@@ -1,5 +1,6 @@
 const WebSocket         = require('ws');
 const WebSocketServer   = WebSocket.Server;
+const stabilize         = require('./stabilizeWebsocket.js');
 const Emitter           = require('events').EventEmitter;
 const IPController      = require('./ServerIPController.js');
 const PacketManager     = require('./Packets/PacketManager.js');
@@ -67,7 +68,7 @@ class Server {
     _initPlayer(socket, req) {
         const id = this._findID();
         const handleMessage = (msg) => this._handleInboundMessage(id, msg);
-        const handleError = (err) => this._handleSocketError(err, id);
+        const handleError = (err) => this._handleSocketError(err, socket);
         const handlePong = () => this._handleSocketPong(id);
         
         this._messagesPermissions[id] = false;
@@ -80,6 +81,8 @@ class Server {
         if (this._packetThrottler.enabled) {
             socket.packetsAllowed = this._packetThrottler.rate;
         }
+
+        socket = stabilize(socket);
         
         socket.on('message', handleMessage);
         socket.on('error', handleError);
@@ -92,19 +95,19 @@ class Server {
             this._removePlayer(id, req);
         });
 
-        logger.debug(`Client ${id} was connected`);
-        
         this._eventEmitter.emit('connection', id);
+
+        logger.debug(`Client ${id} was connected`);
     }
 
     _removePlayer(id, req) {
         this._messagesPermissions[id] = false;
         this._sockets[id] = NULL;
         this._ipController.unregisterIP(req);
+        
+        this._eventEmitter.emit('disconnection', id);
 
         logger.debug(`Client ${id} was disconnected`);
-
-        this._eventEmitter.emit('disconnection', id);
     }
 
     _handleInboundMessage(id, msg) {
@@ -164,15 +167,11 @@ class Server {
         logger.error(err);
     }
 
-    _handleSocketError(err, id) {
+    _handleSocketError(err, socket) {
         if (err) {
-            const state = this._sockets[id].readyState;
+            socket.terminate();
 
-            if (state == WebSocket.OPEN || state == WebSocket.CONNECTING) {
-                this._sockets[id].terminate();
-            }
-
-            logger.debug(`Client ${id} websocket error, terminating connection`);
+            logger.debug('Websocket was disconnected due an error:', err);
         }
     }
 
@@ -187,11 +186,7 @@ class Server {
     }
 
     kickPlayer(id) {
-        const state = this._sockets[id].readyState;
-
-        if (state == WebSocket.OPEN || state == WebSocket.CONNECTING) {
-            this._sockets[id].terminate();
-        }
+        this._sockets[id].terminate();
 
         logger.debug(`Kicking client ${id}`);
     }
@@ -205,11 +200,10 @@ class Server {
     }
 
     send(clientId, packet) {
-        if (this._sockets[clientId].readyState == WebSocket.OPEN) {
-            packet = PacketManager.encode(packet);
+        var socket = this._sockets[clientId];
 
-            this._sockets[clientId].send(packet, (err) => this._handleSocketError(err, clientId));
-        }
+        packet = PacketManager.encode(packet);
+        socket.send(packet, (err) => this._handleSocketError(err, socket));
     }
 
     get clientAmount() {

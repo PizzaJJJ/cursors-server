@@ -1,5 +1,5 @@
 function BufferWriter() {
-	this.buffer = null;
+	this.buffer = new Buffer();
 }
 
 BufferWriter.prototype = {
